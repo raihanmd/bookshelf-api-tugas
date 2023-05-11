@@ -1,6 +1,15 @@
 const { nanoid } = require("nanoid");
 const bookshelfs = require("./bookshelfs");
 
+const welcomePage = (request, h) => {
+  const response = h.response({
+    status: "success",
+    message: "Selamat datang di bookshelf api",
+  });
+  response.code(200);
+  return response;
+};
+
 const addBookHandler = (request, h) => {
   const { name, year, author, summary, publisher, pageCount, readPage, reading } = request.payload,
     id = nanoid(16),
@@ -284,4 +293,4 @@ const getBookByIdHandler = (request, h) => {
   return response;
 };
 
-module.exports = { addBookHandler, deleteBookByIdHandler, editBookByIdHandler, getAllBooksHandler, getBookByIdHandler };
+module.exports = { welcomePage, addBookHandler, deleteBookByIdHandler, editBookByIdHandler, getAllBooksHandler, getBookByIdHandler };
